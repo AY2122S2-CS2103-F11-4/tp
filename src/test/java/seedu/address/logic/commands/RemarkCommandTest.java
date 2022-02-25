@@ -46,7 +46,7 @@ public class RemarkCommandTest {
         expectedModel.setPerson(firstPerson, editedPerson);
 
         assertCommandSuccess(remarkCommand, model, expectedMessage, expectedModel);
-        }
+    }
 
         @Test
         public void execute_deleteRemarkUnfilteredList_success() {
@@ -125,5 +125,6 @@ public class RemarkCommandTest {
             // different remark -> returns false
             assertFalse(standardCommand.equals(new RemarkCommand(INDEX_FIRST_PERSON,
                     new Remark(VALID_REMARK_BOB))));
-        }
-    }
+            }
+}
+
