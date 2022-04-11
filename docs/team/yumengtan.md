@@ -10,8 +10,9 @@ If you can type fast, NUScheduler can schedule your tasks faster than traditiona
 Given below are my contributions to the project.
 
 * **New Feature**: Implemented `FindTask` command (Pull Requests [#33](https://github.com/AY2122S2-CS2103-F11-4/tp/pull/33), [#59](https://github.com/AY2122S2-CS2103-F11-4/tp/pull/59), [#84](https://github.com/AY2122S2-CS2103-F11-4/tp/pull/84))
-    * What it does: Allow the user to find matching tasks in task list based on a keyword or multiple keywords.
-    * Justification: Our target audience is year 1 computing students. It helps them easily find any tasks such as assignments based on a keyword or multiple keywords. 
+
+    * What it does: Allow the user to find matching tasks in task list based on a keyword or multiple keywords
+    * Justification: Our target audience is year 1 computing students. It helps them easily find any tasks such as assignments based on a keyword or multiple keywords.
     * **Classes created**:
     * `FindTaskCommand`
     * `FindTaskCommandParser`
@@ -56,14 +57,11 @@ Given below are my contributions to the project.
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): (Pull Request [#136](https://github.com/AY2122S2-CS2103-F11-4/tp/pull/136))
-    * Reported 12 bugs for other teams during [PE Dry Run](https://github.com/yumengtan/ped/issues).  
-    * Submitted forum post [#211](https://github.com/nus-cs2103-AY2122S2/forum/issues/211).
+    * Reported 12 bugs for other teams during [PE Dry Run](https://github.com/yumengtan/ped/issues)
+    * Submitted forum post [#211](https://github.com/nus-cs2103-AY2122S2/forum/issues/211)
 
 
 * **Statistics**:
     * Reviewed PRs: [13](https://github.com/AY2122S2-CS2103-F11-4/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3A%40me)
     * Raised PRs: [20](https://github.com/AY2122S2-CS2103-F11-4/tp/pulls?q=is%3Apr+is%3Aclosed+author%3Ayumengtan+review%3Aapproved)
     * Issues Taken: [30](https://github.com/AY2122S2-CS2103-F11-4/tp/issues?q=assignee%3Ayumengtan+is%3Aclosed)
-    
-
-

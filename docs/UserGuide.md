@@ -2,7 +2,9 @@
 layout: page
 title: User Guide
 ---
-#NUScheduler
+
+## NUScheduler
+
 NUScheduler is a desktop app for Year 1 Computing students to assist with more efficient management of tasks and contacts,
 optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 If you can type fast, NUScheduler can schedule your tasks faster than traditional GUI apps.
@@ -37,7 +39,7 @@ If you can type fast, NUScheduler can schedule your tasks faster than traditiona
 3. Copy the file to the folder you want to use as the _home folder_ for your NUScheduler.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   
+
 ![Ui](images/Ui.png)
 
 6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -68,7 +70,7 @@ If you can type fast, NUScheduler can schedule your tasks faster than traditiona
 - Words in **UPPER_CASE** are the parameters to be supplied by the user.e.g. in `add n/NAME`, **NAME** is a parameter.
 - which can be used as `add n/John Doe`.
 - Items in **square brackets** are optional.e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-- Parameters can be in any order given in the command format.e.g. if the command format. specifies 
+- Parameters can be in any order given in the command format.e.g. if the command format. specifies
 `addt d/DESCRIPTION [t/DEADLINE]`, the details can be entered as `[t/DEADLINE] d/DESCRIPTION`.
 - All `<Integer>` fields must be greater than 0.
 - Additional parameters for commands that do not take in any parameters (such as `list`) will be ignored.
@@ -89,7 +91,9 @@ specified and the deadline cannot be earlier than today's date or invalid date (
 
 Format: `addt d/DESCRIPTION [t/DEADLINE (dd/mm/yyyy)]`
 
-Example: `addt d/Buy groceries t/01/01/2022`
+Example: `addt d/Buy groceries t/01/05/2022`
+
+![Ui](images/UiAddTask.png)
 
 ### Feature 2
 #### Feature - Deletes a task: `delt`
@@ -98,7 +102,9 @@ Deletes a task from the task list, where `<Integer>` is the ID of the task.
 
 Format: `delt <Integer>`
 
-Example: `delt 3`
+Example: `delt 1`
+
+![Ui](images/UiDeleteTask.png)
 
 ### Feature 3
 #### Feature - Updates a task description and/or deadline: `updt`
@@ -111,11 +117,13 @@ Format 2: `updt <Integer> d/DESCRIPTION`
 
 Format 3: `updt <Integer> d/DESCRIPTION t/DEADLINE`
 
-Example 1: `updt 3 t/01/02/2022`
+Example 1: `updt 3 t/01/06/2022`
 
 Example 2: `updt 3 d/Buy groceries`
 
-Example 3: `updt 3 d/Buy groceries t/01/02/2022`
+Example 3: `updt 3 d/Buy groceries later t/01/06/2022`
+
+![Ui](images/UiUpdateTask.png)
 
 ### Feature 4
 #### Feature - Find tasks: `findt`
@@ -128,17 +136,24 @@ Format: `findt KEYWORD [MORE_KEYWORDS]`
 - The order of the keywords matters. e.g. `drink water` will not match `water drink`
 - Only full keyword(s) will be accepted. e.g. `drink` will match `drink`; `ink` will not match `drink`
 - All keyword(s) have to be matched for task to be returned.
-- If a word is contained within a parentheses without spaces, the keyword has to contain the parantheses as well. 
+- If a word is contained within a parentheses without spaces, the keyword has to contain the parentheses as well.
 e.g. `Assignment` will not match `(Assignment`.
+- Allows the user to easily copy data from command box. Future versions of this program will update the UI according
+to the search parameters.
 
-Example: `findt lessons` returns `Swimming lessons 03/05/2022`. 
+Example: `findt groceries` returns `Buy groceries later 01/06/2022`.
+
+![Ui](images/UiFindTask.png)
 
 ### Feature 5
 #### Feature - List all tasks: `viewt`
 
-View all the tasks currently in the task list.
+View all the tasks currently in the task list. Allows the user to copy the data easily. Future versions of this program
+will update the UI to display all tasks.
 
 Format: `viewt`
+
+![Ui](images/UiViewTask.png)
 
 ## Contact Management
 
@@ -153,11 +168,15 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A contact can have any number of tags (including 0).
+
+Note: Only the Person's name will be deemed as unique. Other contacts are able to share the same email address and phone numbers.
 </div>
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+
+![Ui](images/UiAddPerson.png)
 
 ### Feature 7
 #### Feature - Deletes a contact : `delete`
@@ -174,6 +193,8 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd contact in NUScheduler.
 * `find Betsy` followed by `delete 1` deletes the 1st contact in the results of the `find` command.
 
+![Ui](images/UiDeletePerson.png)
+
 ### Feature 8
 #### Feature - Edits a contact : `edit`
 
@@ -184,13 +205,15 @@ Format: `edit <Integer> [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * Edits the contact at the specified `INTEGER`. The integer refers to the index number shown in the displayed contact list. The integer **must be a positive integer**.
 * At least one of the optional fields must be provided.
   * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the contact will be removed i.e adding of tags is not cumulative.
+* When editing tags, the existing tags of the contact will be removed i.e. adding of tags is not cumulative.
 * You can remove all the contact’s tags by typing `t/` without
-  specifying any tags after it.
+  specifying any tags after it. Note: For this clearing, only this format will be accepted. `edit <Integer> t/`
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st contact to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
+
+![Ui](images/UiEditPerson.png)
 
 ### Feature 9
 #### Feature - List all contacts : `list`
@@ -206,12 +229,14 @@ Clears all contacts from NUScheduler.
 
 Format: `clear`
 
+![Ui](images/UiClearPerson.png)
+
 ### Feature 11
 #### Feature - Finds contacts containing any of the given keywords: `find`
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
+* The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
@@ -221,6 +246,8 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
+
+![Ui](images/UiFindPerson.png)
 
 ### Feature 12
 #### Feature - Exit the app: `exit`
@@ -233,7 +260,7 @@ NUScheduler data is saved in the hard disk automatically after any command that 
 
 ### Note - Editing the data file
 
-NUScheduler data are saved as a JSON file `[JAR file location]/data/addressbook.json` for contact list and `[JAR file location]/data/tasklist.json` for task list. 
+NUScheduler data are saved as a JSON file `[JAR file location]/data/addressbook.json` for contact list and `[JAR file location]/data/tasklist.json` for task list.
 Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**

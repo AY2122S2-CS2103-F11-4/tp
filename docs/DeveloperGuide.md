@@ -8,8 +8,9 @@ title: Developer Guide
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
-
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is based on the [AddressBook-Level3 project](https://github.com/se-edu/addressbook-level3) created by the [SE-EDU initiative](https://se-education.org/).
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
+* The regex method to implement `FindTask` feature was referenced and adapted from [stackoverflow](https://stackoverflow.com/questions/25483114/regex-to-find-whole-word-in-text-but-case-insensitive).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -73,7 +74,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` , `TaskListPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -82,7 +83,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Person` and `Task` objects residing in the `Model`.
 
 ### Logic component
 
@@ -289,17 +290,16 @@ The following sequence diagram shows how the add task operation work assuming no
 
 ![FindTaskCommandSequenceDiagram](images/FindTaskSequenceDiagram.png)
 
-_{more aspects and alternatives to be added}_
 
 ### \[Proposed\] Add Delete Task Feature (Ivor)
 #### Proposed Implementation
 The proposed delete task feature is facilitated by `DeleteTaskCommand`. It extends `Command` and make use of a new model `TaskList` and `Task`.
-The `TaskList` model consists of an `ArrayList<Task>` to store the `Task`. The `DeketeTaskCommand` also has a `DeleteTaskCommandParser`
+The `TaskList` model consists of an `ArrayList<Task>` to store the `Task`. The `DeleteTaskCommand` also has a `DeleteTaskCommandParser`
 to do the logical parsing of user's input. Additionally, this feature implements the following operations:
 
 * `DeleteTaskCommand#execute()` — Executes the command.
 * `DeleteTaskCommandParser#parse()` — Make sense of the user's input and returns an `DeleteTaskCommand` object.
-* `TaskList#DeleteTask()` — Delete an existing task in the task list if user's input is valid.
+* `TaskList#deleteTask()` — Delete an existing task in the task list if user's input is valid.
 
 The `TaskList#deleteTask()` is exposed in the `Model` interface as `Model#deleteTask()`.
 
@@ -308,7 +308,7 @@ Given below is an example usage scenario and how the delete task feature works.
 The following activity diagram shows the workflow of delete task operation:
 
 The user will type in the command `delt <integer>`.
-If a valid format is detected, the system will remove the corresponding task with the integer ID,  and prompt the user that a
+If a valid format is detected, the system will remove the corresponding task with the integer ID, and prompt the user that a
 task has been successfully deleted.
 
 ![DeleteTaskCommandActivityDiagram](images/DeleteTaskActivityDiagram.png)
@@ -317,7 +317,32 @@ The following sequence diagram shows how the delete task operation work assuming
 
 ![DeleteTaskCommandSequenceDiagram](images/DeleteTaskSequenceDiagram.png)
 
-_{more aspects and alternatives to be added}_
+### \[Proposed\] Add Update Task Feature (Ivor)
+#### Proposed Implementation
+The proposed update task feature is facilitated by `UpdateTaskCommand`. It extends `Command` and make use of a new model `TaskList` and `Task`.
+The `TaskList` model consists of an `ArrayList<Task>` to store the `Task`. The `UpdateTaskCommand` also has a `UpdateTaskCommandParser`
+to do the logical parsing of user's input. Additionally, this feature implements the following operations:
+
+* `UpdateTaskCommand#execute()` — Executes the command.
+* `UpdateTaskCommandParser#parse()` — Make sense of the user's input and returns an `UpdateTaskCommand` object.
+* `TaskList#updateTask()` — Updates an existing task in the task list if user's input is valid.
+
+The `TaskList#updateTask()` is exposed in the `Model` interface as `Model#updateTask()`.
+
+Given below is an example usage scenario and how the update task feature works.
+
+The following activity diagram shows the workflow of delete task operation:
+
+The user will type in the command `updt <integer> d\new description t\ new deadline`. Either parameter is optional but at least one must be provided.
+If a valid format is detected, the system will update the corresponding task with the integer ID with the new attributes, and prompt the user that a
+task has been successfully updated.
+
+![UpdateTaskCommandActivityDiagram](images/UpdateTaskCommandActivityDiagram.png)
+
+The following sequence diagram shows how the update task operation work assuming no exception is thrown:
+
+![UpdateTaskCommandSequenceDiagram](images/UpdateTaskCommandSequenceDiagram.png)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -340,7 +365,6 @@ NUScheduler is for Year 1 NUS Computing students who prefer CLI over GUI and has
 
 **Value proposition**: This app has simple CLI and a sleek GUI that allows the user to manage the tasks easily and efficiently. It will be mainly used to keep track NUS assignments and projects across multiple modules.
 
-
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
@@ -353,7 +377,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | beginner user            | view all tasks                       | keep track of all my current tasks   |
 | `* * *`  | beginner user            | add a contact                        | keep track of all my contacts        |
 | `* * *`  | beginner user            | delete a contact                     | delete an incorrect/unneeded contact |
-| `* * *`  | beginner user            | edit a contact                       | correct/update a a contact           |
+| `* * *`  | beginner user            | delete a task                        | delete an incorrect/unneeded task    |
+| `* * *`  | beginner user            | edit a contact                       | correct/update a contact             |
+| `* * *`  | beginner user            | update a task                        | correct/update a task                |
 | `* * *`  | beginner user            | find tasks based on keyword          | search for relevant tasks quickly    |
 | `* * *`  | beginner user            | find contacts based on keyword       | search for relevant contacts quickly |
 | `* * *`  | beginner user            | view all contacts                    | view all my current contacts         |
@@ -361,8 +387,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | potential user           | use simple commands                  | learn the commands easily            |
 | `* * *`  | year 1 computing student | keep track of assignment deadlines   | complete the tasks on time           |
 | `*`      | beginner user            | see a reminder of tasks from the app | know what are my upcoming deadlines  |
-
-*{More to be added}*
 
 ### Use cases
 
@@ -408,13 +432,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-* 2b. The task deadline has a wrong time format.
+* 2b. The task deadline has a wrong date format.
     * 2b1. NUScheduler shows an error message.
+
+    Use case ends.
+
+* 2c. The task has multiple description prefix (`d/`) or deadline prefix (`t/`).
+    * 2c1. NUScheduler prompts the user to fill up the description.
 
       Use case ends.
 
-* 2c. The task has multiple description prefix (`d/`) or deadline prefix (`t/`).
-    * 2c1. NUScheduler shows an error message.
+* 2d. The task has deadline prefix (`t/`) in the task description.
+    * 2d1. NUScheduler prompts the user to fill up the description.
+
+      Use case ends.
+
+* 2e. The task deadline is before today's date.
+    * 2e1. NUScheduler prompts the user to fill up the description.
+
+      Use case ends.
+
+* 2f. The task deadline is invalid (e.g. 30/02/2022).
+    * 2f1. NUScheduler prompts the user to fill up the description.
 
       Use case ends.
 
@@ -481,19 +520,67 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+**Use case: Update a task**
+
+**MSS**
+
+1. User requests to update a task with update task command
+2. NUScheduler updates task specified from task list
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The task list is empty.
+    * 2a1. NUScheduler shows an error message.
+
+      Use case ends.
+
+* 2b. The task number to update is invalid.
+    * 2b1. NUScheduler shows an error message.
+
+      Use case ends.
+
+* 2c. No prefix is provided.
+    * 2c1. NUScheduler prompts the user use the correct command format.
+
+      Use case ends.
+
+* 2d. The task deadline has a wrong time format.
+    * 2d1. NUScheduler shows an error message.
+
+      Use case ends.
+
+* 2e. The task has multiple description prefix (`d/`) or deadline prefix (`t/`).
+    * 2e1. NUScheduler shows an error message.
+
+      Use case ends.
+
 ### Non-Functional Requirements
 
-1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. The command used should be simple to learn.
-5. The system should be usable by a novice who has never used the system before.
-6. The system should be backward compatible with data produced by earlier versions of the system.
-7. Each command should not take more than 2 second to complete and display the result.
-8. Texts in the UI should wrap around.
-9. The project is expected to adhere to a schedule that delivers a feature set every milestone.
-
-*{More to be added}*
+1. Should work on any _mainstream OS_ as long as it has Java `11` is installed.
+2. Should be used by a single user.
+3. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+4. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+5. The command used should be simple to learn.
+6. New user should be able to access the help page within 3 actions upon launching the application.
+7. The system should be usable by a novice who has never used the system before.
+8. The system should be backward compatible with data produced by earlier versions of the system.
+9. Each command should not take more than 5 second to complete.
+10. Each command should display the result.
+11. The order of the user input parameters when executing a command should not matter.
+12. Texts in the UI should wrap around.
+13. The project is expected to adhere to a schedule that delivers a feature set every milestone.
+14. Data should be stored locally.
+15. Data should be stored in a human-editable format.
+16. Data should be able to port over to another computer.
+17. Should notify the user with necessary information if their input does not follow the format.
+18. Should be portable without using any installer.
+19. Should be packaged into a single file, in JAR format.
+20. Should have a total app size of at most 50 MB.
+21. Should function without a remote server.
+22. Should not allow duplicate entries of person with the same name.
+23. Should allow duplicated tasks with same description.
 
 ### Glossary
 
@@ -503,6 +590,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Task list**: A task list of all the tasks
 * **Task list ID**: ID assigned to corresponding task in the list
 * **Prefix**: A header (eg `d/`, `t/`) that is used to identify different clauses in user inputs.
+* **Data**: It refers to the entries of person in `addressbook.json` or task in `tasklist.json`.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -519,18 +607,19 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+    1a. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    1b. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+    1c. If double-click does not work, user can run `java -jar NUScheduler.jar` in terminal in the same directory as the jar file.
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+2. Saving window preferences
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+    2a. Resize the window to an optimum size. Move the window to a different location. Close the window.
+
+    2b. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
 
 ### Deleting a person
 
@@ -547,12 +636,8 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Saving data in JSON
 
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+1. The system automatically loads up a preset JSON file if there is any missing json files.
+2. The system will automatically save data in JSON format when the user successfully executes command.
+3. The system will automatically save data in JSON format when the user exits the application.
