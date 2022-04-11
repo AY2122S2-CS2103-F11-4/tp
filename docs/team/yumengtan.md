@@ -10,7 +10,7 @@ If you can type fast, NUScheduler can schedule your tasks faster than traditiona
 Given below are my contributions to the project.
 
 * **New Feature**: Implemented `FindTask` command (Pull Requests [#33](https://github.com/AY2122S2-CS2103-F11-4/tp/pull/33), [#59](https://github.com/AY2122S2-CS2103-F11-4/tp/pull/59), [#84](https://github.com/AY2122S2-CS2103-F11-4/tp/pull/84))
-    * What it does: Allow the user to find matching tasks in task list based on a keyword or multiple keywords
+    * What it does: Allow the user to find matching tasks in task list based on a keyword or multiple keywords.
     * Justification: Our target audience is year 1 computing students. It helps them easily find any tasks such as assignments based on a keyword or multiple keywords. 
     * **Classes created**:
     * `FindTaskCommand`
@@ -27,10 +27,11 @@ Given below are my contributions to the project.
 
 
 * **Enhancements to existing features**:
-    * Updated GUI layout and components (Pull requests [#64](https://github.com/AY2122S2-CS2103-F11-4/tp/pull/64), [#65](https://github.com/AY2122S2-CS2103-F11-4/tp/pull/65), [#137](https://github.com/AY2122S2-CS2103-F11-4/tp/pull/137), [#81](https://github.com/AY2122S2-CS2103-F11-4/tp/pull/81))
+    * Updated GUI layout and components. (Pull requests [#64](https://github.com/AY2122S2-CS2103-F11-4/tp/pull/64), [#65](https://github.com/AY2122S2-CS2103-F11-4/tp/pull/65), [#137](https://github.com/AY2122S2-CS2103-F11-4/tp/pull/137), [#81](https://github.com/AY2122S2-CS2103-F11-4/tp/pull/81))
     * Updated GUI to display task list, added `TaskCard`, `TaskListPanel` and `UniqueTaskList` classes.  (Pull request [#78](https://github.com/AY2122S2-CS2103-F11-4/tp/pull/78))
-    * Wrote additional tests to increase coverage (Pull request [#59](https://github.com/AY2122S2-CS2103-F11-4/tp/pull/59))
+    * Wrote additional tests to increase coverage. (Pull request [#59](https://github.com/AY2122S2-CS2103-F11-4/tp/pull/59))
 
+<div style="page-break-after: always;"></div>
 
 * **Documentation**:
     * User Guide:
@@ -42,9 +43,9 @@ Given below are my contributions to the project.
         * Added MSS for `FindTask`. (Pull request [#38](https://github.com/AY2122S2-CS2103-F11-4/tp/pull/38/files))
         * Updated Ui component to match project details (Pull request [#144](https://github.com/AY2122S2-CS2103-F11-4/tp/pull/144))
     * Diagrams
-      * Added Sequence Diagram for `FindTask` (Pull request [#62](https://github.com/AY2122S2-CS2103-F11-4/tp/pull/62))
-      * Added Activity Diagram for `FindTask` (Pull request [#62](https://github.com/AY2122S2-CS2103-F11-4/tp/pull/62))
-      * Updated Ui Class Diagram to match project details (Pull request [#144](https://github.com/AY2122S2-CS2103-F11-4/tp/pull/144))
+      * Added Sequence Diagram for `FindTask`. (Pull request [#62](https://github.com/AY2122S2-CS2103-F11-4/tp/pull/62))
+      * Added Activity Diagram for `FindTask`. (Pull request [#62](https://github.com/AY2122S2-CS2103-F11-4/tp/pull/62))
+      * Updated Ui Class Diagram to match project details. (Pull request [#144](https://github.com/AY2122S2-CS2103-F11-4/tp/pull/144))
     *README and GitHub Pages:
       * Refactored README and GitHub pages to match project description. (Pull Requests [#9](https://github.com/AY2122S2-CS2103-F11-4/tp/pull/9), [##47](https://github.com/AY2122S2-CS2103-F11-4/tp/pull/47))
 
@@ -55,8 +56,8 @@ Given below are my contributions to the project.
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): (Pull Request [#136](https://github.com/AY2122S2-CS2103-F11-4/tp/pull/136))
-    * Reported 12 bugs for other teams during [PE Dry Run](https://github.com/yumengtan/ped/issues)  
-    * Submitted forum post [#211](https://github.com/nus-cs2103-AY2122S2/forum/issues/211)
+    * Reported 12 bugs for other teams during [PE Dry Run](https://github.com/yumengtan/ped/issues).  
+    * Submitted forum post [#211](https://github.com/nus-cs2103-AY2122S2/forum/issues/211).
 
 
 * **Statistics**:
